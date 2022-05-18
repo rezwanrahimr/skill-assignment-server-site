@@ -88,4 +88,24 @@ client.connect((err) => {
       }
     );
   });
+ // Delete Todo
+ app.delete("/todos/:id", (req, res) => {
+  todosCollection.deleteOne(
+    { _id: ObjectID(req.params.id) },
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({
+          status: 1,
+          message: "Todo Deleted Successfully",
+        });
+      }
+    }
+  );
+});
+});
 
+app.listen(port, () => {
+console.log(`App Listening at http://localhost:${port}`);
+});
