@@ -1,0 +1,21 @@
+{
+  "name": "skill-assignment-server-site",
+  "version": "1.0.0",
+  "description": "\"# skill-assignment-server-site\"",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js",
+    "start -dev":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rezwanrahimr/skill-assignment-server-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rezwanrahimr/skill-assignment-server-site/issues"
+  },
+  "homepage": "https://github.com/rezwanrahimr/skill-assignment-server-site#readme"
+}
