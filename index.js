@@ -46,3 +46,46 @@ client.connect((err) => {
       }
     });
   });
+  // Get All Todos
+  app.get("/all-todos", (req, res) => {
+    todosCollection.find({}).toArray((err, todos) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(todos);
+      }
+    });
+  });
+
+  // Insert Todo
+  app.post("/todos", (req, res) => {
+    todosCollection.insertOne(req.body, (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({
+          status: 1,
+          message: "Todo Inserted Successfully",
+        });
+      }
+    });
+  });
+
+  // Update Todo
+  app.post("/update-todo/:id", (req, res) => {
+    todosCollection.updateOne(
+      { _id: ObjectID(req.params.id) },
+      { $set: { status: req.body.status } },
+      (err, result) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({
+            status: 1,
+            message: "Todo Updated Successfully",
+          });
+        }
+      }
+    );
+  });
+
