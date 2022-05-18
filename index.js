@@ -19,3 +19,30 @@ app.use(
   })
 );
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// MongoDB Connection
+const uri = process.env.MONGODB_URL;
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+client.connect((err) => {
+  console.log(
+    `${!!err ? "Database Connection Failed" : "Database Connection Successful"}`
+  );
+  const todosCollection = client.db("ToDo_App").collection("todos");
+
+  // Get Specific User Todo
+  app.get("/todos", (req, res) => {
+    todosCollection.find({ email: req.query.email }).toArray((err, todos) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(todos);
+      }
+    });
+  });
